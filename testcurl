@@ -16,3 +16,11 @@ curl -s -D- https://HOST | grep -i strict
     ErrorLog ${APACHE_LOG_DIR}/your_project_error.log
     CustomLog ${APACHE_LOG_DIR}/your_project_access.log combined
 </VirtualHost>
+
+def notiz_speichern(request):
+ if request.method = 'POST':
+  benutzername = request.POST.get('benutzername')
+  notiz = request.POST.get('notiz')
+  return HttpReponse("Notiz wurde gespeichert")
+ else:
+  return render(request,'notiz_speichern.html')
