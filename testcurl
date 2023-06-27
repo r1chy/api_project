@@ -1,1 +1,18 @@
 curl -s -D- https://HOST | grep -i strict
+
+<VirtualHost *:80>
+    ServerName your_domain.com
+
+    WSGIDaemonProcess your_project python-home=/path/to/your/venv python-path=/path/to/your/project
+    WSGIProcessGroup your_project
+    WSGIScriptAlias / /path/to/your/project/your_project/wsgi.py
+
+    <Directory /path/to/your/project/your_project>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/your_project_error.log
+    CustomLog ${APACHE_LOG_DIR}/your_project_access.log combined
+</VirtualHost>
